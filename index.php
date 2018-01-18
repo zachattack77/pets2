@@ -1,19 +1,46 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 //require the autoload file
 require_once('vendor/autoload.php');
 
-//create an istance of the base class
+//create an instance of the base class
 $f3 = Base::instance();
 
 //define a default route
 $f3->route('GET /', function() {
-    echo '<h1>Hello!</h1>';
-
     $view = new View();
-    echo $view->render('pets2/index.php');
+    echo $view->render('views/home.html');
 }
 );
 
+$f3->route('GET /pets/show/@pet', function($f3, $params) {
+    switch ($params['pet']) {
+        case 'cat';
+
+        echo '<img src="https://lh6.ggpht.com/8xiOx0sg6CWMljCZeUP5OLZF66di7ih6EY5jY_pHGuH0oJxGa_sD70kP7ja5cpEorK0=h310" border=0>';
+
+            break;
+
+        case 'dog';
+
+          echo  '<img src="http://r.ddmcdn.com/w_830/s_f/o_1/cx_0/cy_220/cw_1255/ch_1255/APL/uploads/2014/11/dog-breed-selector-australian-shepherd.jpg" border=0>';
+
+          break;
+
+        case 'bird';
+
+          echo  '<img src="https://i.ytimg.com/vi/uLP2eUArMVk/maxresdefault.jpg" border=0>';
+
+           break;
+
+        default:
+            $f3->error(404);
+    }
+});
+
 //run Fat-Free
-$f3->run();
+    $f3->run();
+
