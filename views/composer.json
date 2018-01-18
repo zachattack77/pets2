@@ -1,0 +1,12 @@
+{
+  "name":"zkunitsa/328/routing-demo",
+  "authors":[
+    {
+        "name":"ZachKunitsa",
+        "email":"zkunitsa@greenriver.edu"
+    }
+  ],
+  "require":{
+  "bcosca/fatfree-core":"dev-master"
+    }
+}
