@@ -36,13 +36,17 @@ $f3->route('GET /pets/show/@pet', function($f3, $params) {
 });
 
 //define a page1 route
-$f3->route('GET /pets/order', function(){
-echo '<h1>this is page 1 </h1>';
+$f3->route('GET /pets/form1', function(){
+    $template = new Template();
+    echo $template->render('views/form1.html');
 });
+
 //define a page1 route
-$f3->route('GET /pets/order2', function(){
-    echo '<h1>this is page 2 </h1>';
+$f3->route('GET /pets/form2', function(){
+    $template = new Template();
+    echo $template->render('views/form2.html');
 });
+
 //define a page1 route
 $f3->route('GET /pets/results', function(){
     echo '<h1>this is the results </h1>';
