@@ -16,6 +16,7 @@ $f3->route('GET /', function() {
 }
 );
 
+// Route to two pet pictures
 $f3->route('GET /pets/show/@pet', function($f3, $params) {
     switch ($params['pet']) {
         case 'cat';
