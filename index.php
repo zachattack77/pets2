@@ -30,12 +30,6 @@ $f3->route('GET /pets/show/@pet', function($f3, $params) {
 
           break;
 
-        case 'bird';
-
-          echo  '<img src="https://i.ytimg.com/vi/uLP2eUArMVk/maxresdefault.jpg" border=0>';
-
-           break;
-
         default:
             $f3->error(404);
     }
@@ -56,4 +50,6 @@ $f3->route('GET /pets/results', function(){
 
 //run Fat-Free
     $f3->run();
+
+    ?>
 
