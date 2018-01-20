@@ -46,29 +46,30 @@ $f3->route('GET /pets/order1', function(){
 });
 
 //define a page1 route
-$f3->route('POST /pets/order2', function(){
+$f3->route('POST /pets/order2', function($f3){
     $template = new Template();
     echo $template->render('views/form2.html');
     $animal = $_POST['animal'];
     $_SESSION['animal'] = $animal;
+    $f3->set('animal', $animal);
+
+
 
 
 });
 
 //define a page1 route
-$f3->route('POST /pets/results', function(){
+$f3->route('POST /pets/results', function($f3){
+    $color = $_POST['colors'];
+    $_SESSION['colors'] = $color;
+    $animal = $_SESSION['animal'];
+    $f3->set('color', $color);
+    $f3->set('animal', $animal);
     $template = new Template();
     echo $template->render('views/results.html');
 
+
 });
-
-
-//Define a parameter into template
-$f3->route('GET /hi-again', function() {
-    echo 'Hi again, ' . $_SESSION['first'];
-
-}
-);
 
 //run Fat-Free
     $f3->run();
