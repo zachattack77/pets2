@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -43,15 +46,29 @@ $f3->route('GET /pets/order1', function(){
 });
 
 //define a page1 route
-$f3->route('GET /pets/order2', function(){
+$f3->route('POST /pets/order2', function(){
     $template = new Template();
     echo $template->render('views/form2.html');
+    $animal = $_POST['animal'];
+    $_SESSION['animal'] = $animal;
+
+
 });
 
 //define a page1 route
-$f3->route('GET /pets/results', function(){
-    echo '<h1>this is the results </h1>';
+$f3->route('POST /pets/results', function(){
+    $template = new Template();
+    echo $template->render('views/results.html');
+
 });
+
+
+//Define a parameter into template
+$f3->route('GET /hi-again', function() {
+    echo 'Hi again, ' . $_SESSION['first'];
+
+}
+);
 
 //run Fat-Free
     $f3->run();
