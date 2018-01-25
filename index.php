@@ -11,6 +11,9 @@ require_once('vendor/autoload.php');
 
 //create an instance of the base class
 $f3 = Base::instance();
+$f3->set('colors',
+            array('pink', 'green', 'blue'));
+
 
 //define a default route
 $f3->route('GET /', function() {
@@ -53,9 +56,6 @@ $f3->route('POST /pets/order2', function($f3){
     $_SESSION['animal'] = $animal;
     $f3->set('animal', $animal);
 
-
-
-
 });
 
 //define a page1 route
@@ -68,7 +68,11 @@ $f3->route('POST /pets/results', function($f3){
     $template = new Template();
     echo $template->render('views/results.html');
 
+});
 
+$f3->route('GET|POST /pets/new-pet', function($f3){
+    $template = new Template();
+    echo $template->render('views/new-pet.html');
 });
 
 //run Fat-Free
