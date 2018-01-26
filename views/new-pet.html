@@ -9,22 +9,32 @@
 
 <form action="" method="post">
 
-    <input type="text" name="animal" value="">
+    <input type="text" name="pet-name" value="">
 
-    <h4>pet color:</h4>
+    <h4>Pet Color:</h4>
+
+    <check if="{{ @errors['color'] }}">
+        <p>{{ @errors['color'] }}</p>
+    </check>
     <select class="form-control" name="pet-color" id="pet-color">
         <option>--Select--</option>
         <repeat group="{{ @colors }}" value="{{ @colorOption}}">
-            <option {{ @colorOption }}></option>
-
+            <option>
+                <check if="{{ @colorOption == @color }}">selected</check> {{ @colorOption }}
+            </option>
         </repeat>
     </select>
 
-    <h4>pet Type:</h4>
-    <input type="text" name="type" value="">
+    <h4>Pet Type:</h4>
+    <input type="text" name="pet-type" value="">
     <br>
 
     <input type="submit" value="submit">
+
+    <!-- If submission was successful, display a confirmation -->
+    <check if="{{ @success }}">
+        <h2>Thank you for your order of a {{ @type }}</h2>
+    </check>
 </form>
 </body>
 </html>
