@@ -70,7 +70,7 @@ $f3->route('POST /pets/results', function($f3){
 
 });
 
-$f3->route('GET|POST /pets/new-pet', function($f3){
+$f3->route('GET|POST /new-pet', function($f3){
     $template = new Template();
     echo $template->render('views/new-pet.html');
 });
