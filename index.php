@@ -71,6 +71,10 @@ $f3->route('POST /pets/results', function($f3){
 });
 
 $f3->route('GET|POST /new-pet', function($f3){
+    if(isset($_POST['submit'])) {
+        $color = $_POST['pet-color'];
+        include('model/validate.php');
+    }
     $template = new Template();
     echo $template->render('views/new-pet.html');
 });
