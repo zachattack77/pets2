@@ -18,9 +18,25 @@ function validColor($color) {
     return in_array($color, $f3->get('colors'));
 }
 
+/**
+ * Validate a string
+ *
+ * @param $string
+ * @return bool
+ */
 function validString($string) {
     if($string != null && ctype_alpha($string)) {
         return true;
     }
 }
+
+$errors = array();
+
+if(!validColor($color)) {
+    $errors['color'] = "Please enter a valid color.";
+    $errors['type'] = "Please enter a valid type of pet";
+    $errors['name'] = "Please enter a valid name";
+}
+
+$success = sizeof($errors) == 0;
 
