@@ -34,6 +34,8 @@ $errors = array();
 
 if(!validColor($color)) {
     $errors['color'] = "Please enter a valid color.";
+}
+if(!validString($string)) {
     $errors['type'] = "Please enter a valid type of pet";
     $errors['name'] = "Please enter a valid name";
 }
