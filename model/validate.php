@@ -25,20 +25,28 @@ function validColor($color) {
  * @return bool
  */
 function validString($string) {
-    if($string != null && ctype_alpha($string)) {
+    if(!empty($string) && is_string($string))
+    {
         return true;
+    }
+    else {
+        return false;
     }
 }
 
 $errors = array();
 
+
+$success = false;
 if(!validColor($color)) {
-    $errors['color'] = "Please enter a valid color.";
+    $errors['color'] = "Please enter a valid color";
 }
-if(!validString($string)) {
-    $errors['type'] = "Please enter a valid type of pet";
+elseif (!validString($name)){
     $errors['name'] = "Please enter a valid name";
 }
-
-$success = sizeof($errors) == 0;
+elseif ((!validString($type))){
+    $errors['type'] = "Please enter a valid type";
+} else {
+    $success = true;
+}
 
