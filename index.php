@@ -65,12 +65,13 @@ $f3->route('POST /pets/results', function($f3){
     $animal = $_SESSION['animal'];
     $f3->set('color', $color);
     $f3->set('animal', $animal);
-    $template = new Template();
-    echo $template->render('views/results.html');
+    echo "<h1>Results Page</h1>";
+    echo "Thank you for ordering a " . $color . " " . $animal;
 
 });
 
 $f3->route('GET|POST /new-pet', function($f3){
+    $template = new Template();
     if(isset($_POST['submit'])) {
         $color = $_POST['pet-color'];
         $type = $_POST['pet-type'];
@@ -78,16 +79,27 @@ $f3->route('GET|POST /new-pet', function($f3){
         $errors = $_POST['errors'];
         $success = $_POST['success'];
 
+        include('model/validate.php');
+
         $f3->set('color', $color);
         $f3->set('type', $type);
         $f3->set('name', $name);
         $f3->set('errors', $errors);
         $f3->set('success', $success);
 
-        include('model/validate.php');
+
+        if (!validString($name)){
+            $f3->set('invalidName', "Invalid");
+        }
+        if (!validString($type)){
+            $f3->set('invalidType', "Invalid");
+        }
+        if (!validColor($color)){
+            $f3->set('invalidColor', "Invalid");
+        }
+
     }
 
-    $template = new Template();
     echo $template->render('views/new-pet.html');
 });
 

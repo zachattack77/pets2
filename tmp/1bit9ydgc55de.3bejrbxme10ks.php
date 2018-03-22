@@ -12,32 +12,32 @@
     <label class="col-sm-1 control-label"
     >Pet Name</label>
     <div class="col-sm-3">
-        <check if="{{isset(@invalidName) }}">
+        <?php if (isset($invalidName)): ?>
             <p>Please enter a valid name</p>
-        </check>
-        <input type="text" name="pet-name" <check if="{{ isset(@name) }}"> value="{{@name}}"</check>>
+        <?php endif; ?>
+        <input type="text" name="pet-name" <?php if (isset($name)): ?> value="<?= ($name) ?>"<?php endif; ?>>
     </div>
 
     <label class="col-sm-1 control-label"
            for="pet-color">Pet Color</label>
     <div class="col-sm-3">
-        <check if="{{isset(@invalidColor) }}">
+        <?php if (isset($invalidColor)): ?>
             <p>Please enter a valid color</p>
-        </check>
+        <?php endif; ?>
         <select class="form-control" name="pet-color" id="pet-color">
             <option>-----Select-----</option>
-            <repeat group="{{@colors}}" value="{{@colorOption}}">
-                <option <check if="{{ @colorOption == @color }}">selected</check>  value="{{ @colorOption }}" > {{ @colorOption }}</option>
-            </repeat>
+            <?php foreach (($colors?:[]) as $colorOption): ?>
+                <option <?php if ($colorOption == $color): ?>selected<?php endif; ?>  value="<?= ($colorOption) ?>" > <?= ($colorOption) ?></option>
+            <?php endforeach; ?>
         </select>
     </div>
 
     <label class="col-sm-1 control-label">Pet Type</label>
     <div class="col-sm-3">
-        <check if="{{isset(@invalidType) }}">
+        <?php if (isset($invalidType)): ?>
             <p>Please enter a valid Type</p>
-        </check>
-        <input type="text" name="pet-type" <check if="{{ isset(@type) }}">value="{{@type}}"</check>>
+        <?php endif; ?>
+        <input type="text" name="pet-type" <?php if (isset($type)): ?>value="<?= ($type) ?>"<?php endif; ?>>
 
     </div>
 
@@ -45,9 +45,9 @@
 
 </form>
 
-<check if="{{@success}}">
-    <h2>Thank you for your order of a {{@type}} !</h2>
-</check>
+<?php if ($success): ?>
+    <h2>Thank you for your order of a <?= ($type) ?> !</h2>
+<?php endif; ?>
 
 </body>
 </html>
